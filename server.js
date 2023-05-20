@@ -7,6 +7,7 @@ const app = require("./app");
 
 dotenv.config({ path: "./.env" });
 
+mongoose.set('strictQuery', true);
 // Connect database
 mongoose
   .connect(process.env.MONGO_URI)
@@ -14,10 +15,10 @@ mongoose
   .catch((error) => console.log("An error occured..."));
 
 // Serve client folder
-app.use(express.static(path.join(__dirname, "chatapp", "build")));
+app.use(express.static(path.join(__dirname, "chatapp", "client", "build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "chatapp", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "chatapp", "client", "build", "index.html"));
 });
 
 //   Listen to port

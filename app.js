@@ -13,10 +13,9 @@ const errorController = require("./controllers/errorController");
 
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
-
 app.use(cors({
-  origin: true, //included origin as true
-  credentials: true, //included credentials as true
+  origin: true,
+  credentials: true
 }
 ));
 

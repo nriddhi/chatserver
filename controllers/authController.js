@@ -13,10 +13,8 @@ const assignTokenToCookie = (user, res, statusCode) => {
   const token = signToken(user);
 
   const cookieOptions = {
-    path: "/",
     httpOnly: true,
-    sameSite: "none",
-    secure:true,
+    secure: true,
     expires: new Date(
       Date.now() + parseInt(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
     ),
