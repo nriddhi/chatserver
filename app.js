@@ -16,20 +16,20 @@ app.use(cookieParser());
 app.use(cors());
 
 // Routes
-app.use("/api/user", authRouter);
+app.use("/chatapp/api/user", authRouter);
 
 // Protector
-app.use("/api/*", (req, res, next) => {
+app.use("/chatapp/api/*", (req, res, next) => {
   if (!req.cookies.userId)
     return next(new ReqError(400, "You are not logged in"));
 
   next();
 });
 
-app.use("/api/contacts", contactsRouter);
-app.use("/api/profile", profileRouter);
-app.use("/api/chatRoom", chatRoomRouter);
-app.use("/api/upload", uploadRouter);
+app.use("/chatapp/api/contacts", contactsRouter);
+app.use("/chatapp/api/profile", profileRouter);
+app.use("/chatapp/api/chatRoom", chatRoomRouter);
+app.use("/chatapp/api/upload", uploadRouter);
 
 // Error handle middleware
 app.use(errorController);
