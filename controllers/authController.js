@@ -58,7 +58,8 @@ exports.login = catchAsyncError(async (req, res, next) => {
   if (!passwordGivenCorrect)
     return next(new ReqError(400, "Username or Password incorrect"));
 
-  assignTokenToCookie(foundUser, res, 200);
+  //assignTokenToCookie(foundUser, res, 200);
+  res.status(200).json({'ok':'okay'});
 });
 
 exports.register = catchAsyncError(async (req, res, next) => {
