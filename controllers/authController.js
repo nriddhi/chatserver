@@ -16,16 +16,14 @@ const assignTokenToCookie = (user, res, statusCode) => {
     path: "/",
     httpOnly: true,
     sameSite: "none",
-    secure:true
-    // expires: new Date(
-    //   Date.now() + parseInt(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
-    // ),
+    secure:true,
+    expires: new Date(
+      Date.now() + parseInt(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
+    ),
   };
 
-  console.log(token);
-
   res.cookie("telegramToken", token, cookieOptions);
-  //res.cookie("userId", user._id);
+  res.cookie("userId", user._id);
 
   user.password = undefined;
 
