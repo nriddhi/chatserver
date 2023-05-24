@@ -13,7 +13,7 @@ const assignTokenToCookie = (user, res, statusCode) => {
   const token = signToken(user);
 
   const cookieOptions = {
-    path: "/",
+    path: "/chatapp",
     httpOnly: true,
     sameSite: "none",
     secure:true,
