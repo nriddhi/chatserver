@@ -16,7 +16,7 @@ const assignTokenToCookie = (user, res, statusCode) => {
     path: "/",
     httpOnly: true,
     sameSite: "none",
-    secure:true,
+    //secure:true,
     expires: new Date(
       Date.now() + parseInt(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
     ),
