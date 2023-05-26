@@ -12,7 +12,16 @@ const signToken = (user) => {
 const assignTokenToCookie = (user, res, statusCode) => {
   const token = signToken(user);
 
+  if (req.cookies['telegramToken']) {
+    req.cookies['telegramToken'] = "";
+  }
+
+  if (req.cookies['userId']) {
+    req.cookies['userId'] = "";
+  }
+
   const cookieOptions = {
+    path: "/",
     httpOnly: true,
     sameSite: "none",
     secure:true,
