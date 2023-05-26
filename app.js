@@ -2,7 +2,6 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
-app.use(cookieParser());
 const authRouter = require("./routers/authRouter");
 const contactsRouter = require("./routers/contactsRouter");
 const chatRoomRouter = require("./routers/chatRoomRouter");
@@ -11,13 +10,15 @@ const uploadRouter = require("./routers/uploadRouter");
 const ReqError = require("./utilities/ReqError");
 const errorController = require("./controllers/errorController");
 
-app.use(express.json({ limit: "50mb" }));
-
 app.use(cors({
   origin: true,
   credentials: true
 }
 ));
+
+app.use(express.json({ limit: "50mb" }));
+app.use(cookieParser());
+
 
 app.use(function (req, res, next) {
   res.header("Content-Type", "application/json;charset=UTF-8");
