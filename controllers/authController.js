@@ -22,7 +22,7 @@ const assignTokenToCookie = (user, res, statusCode) => {
   };
 
   res.cookie("telegramToken", token, cookieOptions);
-  res.cookie("userId", user._id);
+  res.cookie("userId", user._id, cookieOptions);
 
   user.password = undefined;
 
