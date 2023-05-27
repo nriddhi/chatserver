@@ -12,16 +12,7 @@ const signToken = (user) => {
 const assignTokenToCookie = (user, res, statusCode) => {
   const token = signToken(user);
 
-  if (req.cookies['telegramToken']) {
-    req.cookies['telegramToken'] = "";
-  }
-
-  if (req.cookies['userId']) {
-    req.cookies['userId'] = "";
-  }
-
   const cookieOptions = {
-    path: "/",
     httpOnly: true,
     sameSite: "none",
     secure:true,
@@ -66,27 +57,7 @@ exports.login = catchAsyncError(async (req, res, next) => {
   if (!passwordGivenCorrect)
     return next(new ReqError(400, "Username or Password incorrect"));
 
-    const accessToken = jwt.sign({
-      uId : '65463434',
-   }, process.env.JWT_SECRET_KEY, {
-     expiresIn: "3500s",
-   });
-
-   if (req.cookies['auth_token']) {
-     req.cookies['auth_token'] = "";
-   }
-   
-   res.cookie('auth_token', accessToken, {
-     path: "/",
-     httpOnly: true,
-     sameSite: "none",
-     secure:true
-   });
-
-   return res
-   .status(200)
-   .json({ message: "Logged In Successfully", code:'l200' });
-
+  assignTokenToCookie(foundUser, res, 200);
 });
 
 exports.register = catchAsyncError(async (req, res, next) => {
